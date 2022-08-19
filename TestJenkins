@@ -11,7 +11,7 @@
   ])
 ])
 
-def props = readProperties  file:'envvariables.properties'
+def props = readProperties  file:'$WORKSPACE/src/test/resources/envvariables.properties'
 def Var1= props['slackTo']
 echo "Var1=${Var1}"
 
