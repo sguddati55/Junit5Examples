@@ -14,11 +14,13 @@
             "PATH=$javaHome\bin:$PATH"
         ]) {
             //bat label: 'RunMvn', returnStatus: true, 
-                script: '"%MVN_HOME%\\bin\\mvn" -Dmaven.test.failure.ignore clean package'        
+                script: '"%MVN_HOME%\\bin\\mvn" -Dmaven.test.failure.ignore clean package'  
+                script { currentBuild.description = "${params.SUT_NAME} ${params.EMAIL_TO} ${params.SLACK_CHANNEL}" }
                 
           }
 
         echo "Maven successfully completed!!"
+        
     }
     stage('Results') {
         junit '**/target/surefire-reports/TEST-*.xml'
