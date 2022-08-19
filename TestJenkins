@@ -1,6 +1,19 @@
  node(){
     def mvnHome
     def javaHome
+    parameters {
+      string(name: 'SUT_NAME', defaultValue: 'na44stmfa', description: 'Which Env are we executing on?')
+      }
+      
+    triggers {
+        parameterizedCron('''
+            # leave spaces where you want them around the parameters. They'll be trimmed.
+            # we let the build run with the default name
+            H/4 6 * * *%SUT_NAME=na44stmfa;
+            H/4 6 * * *%SUT_NAME=na44stmfb;
+            55 6 * * *%SUT_NAME=na44stmfc;
+        ''')
+    }
     stage('Preparation') { // for display purposes
         // Get some code from a GitHub repository
         git 'https://github.com/sguddati55/Junit5Examples'
