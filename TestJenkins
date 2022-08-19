@@ -1,4 +1,4 @@
-
+ node(){
     def mvnHome
     def javaHome
     stage('Preparation') { // for display purposes
@@ -23,4 +23,4 @@
     stage('Results') {
         junit '**/target/surefire-reports/TEST-*.xml'
     }
-
+}
