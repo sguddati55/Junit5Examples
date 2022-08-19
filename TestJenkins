@@ -1,41 +1,22 @@
- node() {
-    def mvnHome
-    def javaHome
-    parameters {
-      string(name: 'SUT_NAME', defaultValue: 'na44stmfa', description: 'Which Env are we executing on?')
-      }
-      
-    pipelineTriggers {
-        parameterizedCron('''
-            # leave spaces where you want them around the parameters. They'll be trimmed.
-            # we let the build run with the default name
-            H/2 * * * * %SUT_NAME=na44stmfa;
-            H/3 * * * * %SUT_NAME=na44stmfb;
-            * * * * * %SUT_NAME=na44stmfc;
-        ''')
-    }
-    stage('Preparation') { // for display purposes
-        // Get some code from a GitHub repository
-        git 'https://github.com/sguddati55/Junit5Examples'
-      
-    }
-    stage('Build') {
-        // Run the maven build
-        withEnv([
-            "MVN_HOME=$mvnHome",
-            "JAVA_HOME=$javaHome",
-            "PATH=$javaHome\bin:$PATH"
-        ]) {
-            //bat label: 'RunMvn', returnStatus: true, 
-                script: '"%MVN_HOME%\\bin\\mvn" -Dmaven.test.failure.ignore clean package'  
-                script { currentBuild.description = "${params.SUT_NAME} ${params.EMAIL_TO} ${params.SLACK_CHANNEL}" }
-                
-          }
+ node {
+    properties([
+  parameters([
+    string(name: 'SUT_NAME', defaultValue: 'Test', description: 'Which planet are we on?'),
+  ]),
+  pipelineTriggers([
+    parameterizedCron('''
+        * * * * * %SUT_NAME=Test;
+        */2 * * * * %SUT_NAME=Dev
+    ''')
+  ])
+])
 
-        echo "Maven successfully completed!!"
-        
-    }
-    stage('Results') {
-        junit '**/target/surefire-reports/TEST-*.xml'
-    }
+        stage('Example') {
+            
+                echo "${params.SUT_NAME}"
+                script { currentBuild.description = "${params.SUT_NAME}" }
+            
+        }
+    
+
 }
