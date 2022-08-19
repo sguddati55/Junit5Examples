@@ -13,7 +13,8 @@
 
         stage('Example') {
             
-                echo "${params.SUT_NAME}"
+                echo "${env.emailTo}"
+                echo "${env.slackTo}"
                 script { currentBuild.description = "${params.SUT_NAME}" }
             
         }
