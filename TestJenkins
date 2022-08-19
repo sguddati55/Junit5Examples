@@ -1,11 +1,11 @@
- pipeline {
-    //def mvnHome
-    //def javaHome
+ node() {
+    def mvnHome
+    def javaHome
     parameters {
       string(name: 'SUT_NAME', defaultValue: 'na44stmfa', description: 'Which Env are we executing on?')
       }
       
-    triggers {
+    pipelineTriggers {
         parameterizedCron('''
             # leave spaces where you want them around the parameters. They'll be trimmed.
             # we let the build run with the default name
