@@ -9,9 +9,9 @@
         parameterizedCron('''
             # leave spaces where you want them around the parameters. They'll be trimmed.
             # we let the build run with the default name
-            H/4 6 * * *%SUT_NAME=na44stmfa;
-            H/4 6 * * *%SUT_NAME=na44stmfb;
-            55 6 * * *%SUT_NAME=na44stmfc;
+            H/2 * * * * %SUT_NAME=na44stmfa;
+            H/3 * * * * %SUT_NAME=na44stmfb;
+            * * * * * %SUT_NAME=na44stmfc;
         ''')
     }
     stage('Preparation') { // for display purposes
