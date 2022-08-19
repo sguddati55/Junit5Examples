@@ -11,6 +11,10 @@
   ])
 ])
 
+def props = readProperties  file:'//sguddati55/Junit5Examples/blob/master/envvariables.properties'
+def Var1= props['slackTo']
+echo "Var1=${Var1}"
+
         stage('Example') {
             
                 echo "${env.emailTo}"
