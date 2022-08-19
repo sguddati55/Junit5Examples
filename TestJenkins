@@ -1,6 +1,6 @@
  pipeline {
-    def mvnHome
-    def javaHome
+    //def mvnHome
+    //def javaHome
     parameters {
       string(name: 'SUT_NAME', defaultValue: 'na44stmfa', description: 'Which Env are we executing on?')
       }
