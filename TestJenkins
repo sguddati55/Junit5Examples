@@ -11,8 +11,10 @@
   ])
 ])
 
-git clone https://github.com/aakashsehgal/FMU.git
+ stage('clone') {
+git clone https://github.com/sguddati55/Junit5Examples.git
 echo "pulled the code"
+}
  
 def props = readProperties  file:'$WORKSPACE/src/test/resources/envvariables.properties'
 def Var1= props['slackTo']
