@@ -1,7 +1,6 @@
 node {
-  
 
- stage('clone') {
+stage('clone workspace') {
 git 'https://github.com/sguddati55/Junit5Examples.git'
 echo "pulled the code"
 }
