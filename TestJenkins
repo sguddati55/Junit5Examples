@@ -1,15 +1,5 @@
- node {
-    /*properties([
-  parameters([
-    string(name: 'SUT_NAME', defaultValue: 'Test', description: 'Which planet are we on?'),
-  ]),
-  pipelineTriggers([
-    parameterizedCron('''
-        * * * * * %SUT_NAME=Test;
-        */2 * * * * %SUT_NAME=Dev
-    ''')
-  ])
-])*/
+node {
+  
 
  stage('clone') {
 git 'https://github.com/sguddati55/Junit5Examples.git'
