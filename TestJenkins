@@ -24,6 +24,7 @@ echo "Var1=${Var1}"
             
                 echo "${env.emailTo}"
                 echo "${env.slackTo}"
+                echo "${env.testuitename}" 
                 script { currentBuild.description = "${params.SUT_NAME}" }
             
         }
