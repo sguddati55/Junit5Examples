@@ -1,4 +1,26 @@
+node {
+    properties([
+  parameters([
+    string(name: 'SUT_NAME', defaultValue: 'Test', description: 'Which planet are we on?'),
+  ]),
+  pipelineTriggers([
+    parameterizedCron('''
+        * * * * * %SUT_NAME=Test;
+        */2 * * * * %SUT_NAME=Dev
+    ''')
+  ])
+])
 
+        stage('Example') {
+            
+                echo "${env.emailTo}"
+                echo "${env.slackTo}"
+                script { currentBuild.description = "${params.SUT_NAME}" }
+            
+        }
+    
+
+}
     def mvnHome
     def javaHome
     stage('Preparation') { // for display purposes
@@ -20,7 +42,6 @@
 
         echo "Maven successfully completed!!"
     }
-    stage('Results') {
-        junit '**/target/surefire-reports/TEST-*.xml'
-    }
+    
+
 
