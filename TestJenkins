@@ -6,8 +6,8 @@ echo "pulled the code"
 }
  
 def props = readProperties  file:'envvariables.properties'
-def Var1= props['emailTo']
-echo "Var1=${Var1}"
+def emailTo= props['emailTo']
+echo "emailTo=${emailTo}"
 
         stage('Example') {
             
