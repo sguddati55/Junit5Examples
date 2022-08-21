@@ -11,10 +11,13 @@ echo "pulled the code"
 
         stage('Example') {
             
-                echo "${env.emailTo}"
-                echo "${env.slackTo}"
-                echo "${env.testuitename}" 
-                script { currentBuild.description = "${params.SUT_NAME}" }
+                echo "Email passed from Properties File - ${env.emailTo}"
+                echo "Email with params - ${params.emailTo}"
+                echo "Slack Id to be Notified - ${env.slackTo}"
+                echo "Test suite Name from Properties File - ${env.testuitename}" 
+                echo "Enviornment Name from Build Paramaeters - ${env.SUT_NAME}" 
+                echo "Test cloud Name from Properties Content - ${env.CLOUD_NAME}" 
+                script {currentBuild.description = "${params.SUT_NAME}" }
             
         }
     
