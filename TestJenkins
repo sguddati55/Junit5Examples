@@ -27,7 +27,7 @@ stage('print the retrieve properties') {
                 echo "Suite Name- $suiteName" 
                 echo "Sub Module - $subModule" 
                 echo "Sub Module - $argusEnabled" 
-                echo  "Job Name from Jenkins - $JOB_NAME
+                echo  "Job Name from Jenkins - $JOB_NAME"
                 echo  "Job Name from Properties Content - "${env.jobName}"
                 script {currentBuild.description = "${params.SUT_NAME} ${params.CREDENTIALS_ID} "}
             
