@@ -12,6 +12,7 @@ echo "pulled the code"
         stage('Example') {
             
                 echo "Email passed from Properties File - ${env.emailTo}"
+                 echo "Email passed from Properties File - $emailTo"
                 echo "Email with params - ${params.emailTo}"
                 echo "Slack Id to be Notified - ${env.slackTo}"
                 echo "Test suite Name from Properties File - ${env.testuitename}" 
