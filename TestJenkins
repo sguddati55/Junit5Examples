@@ -5,22 +5,32 @@ git 'https://github.com/sguddati55/Junit5Examples.git'
 echo "pulled the code"
 }
  
+stage('read properties from workspace'){
 def props = readProperties  file:'envvariables.properties'
-def emailTo= props['emailTo']
-echo "emailTo=${emailTo}"
+def testExpression= props['TEST_EXPRESSION']
+def runonSauce= props['RUN_ON_SAUCE']
+def sauceCredentails= props['SAUCE_CREDENTIAL_ID']
+def emailTo= props['EMAIL_TO']
+def runTAP= props['RUN_TAP']
+def suiteName= props['SUITE_NAME']
+def subModule= props['TAP_SUBMODULE']
+def argusEnabled= props['ARGUS_ENABLED']
+}
 
-        stage('Example') {
+stage('print the retrieve properties') {
             
-                echo "Email passed from Properties content - ${env.emailTo}"
-                echo "Email passed from Properties content - $emailTo"
-                echo "Email with params - ${params.emailTo}"
-                echo "Slack Id to be Notified - ${env.slackTo}"
-                echo "Test suite Name from Properties File - ${env.testuitename}" 
-                echo "Enviornment Name from Build Paramaeters - ${env.SUT_NAME}" 
-                echo "Test cloud Name from Properties Content - ${env.CLOUD_NAME}" 
-                script {currentBuild.description = "${params.SUT_NAME}" }
+                echo "Test Expression - $testExpression"
+                echo "Run on sauce - $runonSauce"
+                echo "Sauce Credentials- $sauceCredentails"
+                echo "emailTo- $emailTo"
+                echo "Run TAP - $runTAP" 
+                echo "Suite Name- $suiteName" 
+                echo "Sub Module - $subModule" 
+                echo "Sub Module - $argusEnabled" 
+                echo  "Job Name from Jenkins - $JOB_NAME
+                echo  "Job Name from Properties Content - "${env.jobName}"
+                script {currentBuild.description = "${params.SUT_NAME} ${params.CREDENTIALS_ID} "}
             
         }
-    
-
+      
 }
