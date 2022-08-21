@@ -6,13 +6,13 @@ echo "pulled the code"
 }
  
 def props = readProperties  file:'envvariables.properties'
-//def Var1= props['slackTo']
-//echo "Var1=${Var1}"
+def Var1= props['emailTo']
+echo "Var1=${Var1}"
 
         stage('Example') {
             
-                echo "Email passed from Properties File - ${env.emailTo}"
-                 echo "Email passed from Properties File - $emailTo"
+                echo "Email passed from Properties content - ${env.emailTo}"
+                echo "Email passed from Properties content - $emailTo"
                 echo "Email with params - ${params.emailTo}"
                 echo "Slack Id to be Notified - ${env.slackTo}"
                 echo "Test suite Name from Properties File - ${env.testuitename}" 
