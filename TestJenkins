@@ -5,7 +5,7 @@ git 'https://github.com/sguddati55/Junit5Examples.git'
 echo "pulled the code"
 }
  
-stage('read properties from workspace'){
+
 def props = readProperties  file:'envvariables.properties'
 def testExpression= props['TEST_EXPRESSION']
 def runonSauce= props['RUN_ON_SAUCE']
@@ -15,7 +15,7 @@ def runTAP= props['RUN_TAP']
 def suiteName= props['SUITE_NAME']
 def subModule= props['TAP_SUBMODULE']
 def argusEnabled= props['ARGUS_ENABLED']
-}
+
 
 stage('print the retrieve properties') {
             
