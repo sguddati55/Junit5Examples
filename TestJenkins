@@ -19,7 +19,7 @@ def argusEnabled= props['ARGUS_ENABLED']
 
 stage('print the retrieve properties') {
             
-                echo "Test Expression - $testExpression"
+                echo "Test Expression - ${testExpression}"
                 echo "Run on sauce - $runonSauce"
                 echo "Sauce Credentials- $sauceCredentails"
                 echo "emailTo- $emailTo"
