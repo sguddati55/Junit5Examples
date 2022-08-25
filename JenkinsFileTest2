@@ -24,36 +24,35 @@ H(20-45) 1-23/3 * * *%SUT_NAME=stg5;CREDENTIALS_ID=env-css
   ])
 ])
 
-        stage('Executing test and printing the properties')      
-                echo "${env.emailTo}"
-                echo "${env.slackTo}"
-                script { currentBuild.description = "${params.SUT_NAME} ${params.CREDENTIALS_ID}" }
-            
-        }
-    
-
+stage('clone workspace') {
+git 'https://github.com/sguddati55/Junit5Examples.git'
+echo "pulled the code"
 }
-    def mvnHome
-    def javaHome
-    stage('Preparation') { // for display purposes
-        // Get some code from a GitHub repository
-        git 'https://github.com/sguddati55/Junit5Examples'
-      
-    }
-    stage('Build') {
-        // Run the maven build
-        withEnv([
-            "MVN_HOME=$mvnHome",
-            "JAVA_HOME=$javaHome",
-            "PATH=$javaHome\bin:$PATH"
-        ]) {
-            //bat label: 'RunMvn', returnStatus: true, 
-                script: '"%MVN_HOME%\\bin\\mvn" -Dmaven.test.failure.ignore clean package'        
-                
-          }
+    
+def props = readProperties  file:'envvariables.properties'
+def testExpression= props['TEST_EXPRESSION']
+def runonSauce= props['RUN_ON_SAUCE']
+def sauceCredentails= props['SAUCE_CREDENTIAL_ID']
+def emailTo= props['EMAIL_TO']
+def runTAP= props['RUN_TAP']
+def suiteName= props['SUITE_NAME']
+def subModule= props['TAP_SUBMODULE']
+def argusEnabled= props['ARGUS_ENABLED']
 
-        echo "Maven successfully completed!!"
+
+stage('print the retrieve properties') {
+            
+                echo "Test Expression - $testExpression"
+                echo "Run on sauce - $runonSauce"
+                echo "Sauce Credentials- $sauceCredentails"
+                echo "emailTo- $emailTo"
+                echo "Run TAP - $runTAP" 
+                echo "Suite Name- $suiteName" 
+                echo "Sub Module - $subModule" 
+                echo "Sub Module - $argusEnabled" 
+                echo  "Job Name from Jenkins - $JOB_NAME"
+                echo  "Job Name from Properties Content - ${env.jobName}"
+                script {currentBuild.description = "${params.SUT_NAME}  ${params.CREDENTIALS_ID}"}
+    }
     }
     
-
-
