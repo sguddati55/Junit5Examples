@@ -1,6 +1,4 @@
- 
- @Library('sfci-pipeline-sharedlib@master') _
-import hudson.tasks.test.AbstractTestResultAction
+
 node {
 
 stage('clone workspace') {
