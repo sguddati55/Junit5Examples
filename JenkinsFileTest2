@@ -1,21 +1,33 @@
 node {
     properties([
   parameters([
-    string(name: 'SUT_NAME', defaultValue: 'Test', description: 'Which planet are we on?'),
+    string(name: 'SUT_NAME', defaultValue: 'na44stmfa', description: 'Which Environment you want to run the tests on?'),
+    string(name: 'CREDENTIALS_ID', defaultValue: 'env-sanity', description: 'Which credentials Id to be consumed ?'),
   ]),
   pipelineTriggers([
     parameterizedCron('''
-        * * * * * %SUT_NAME=Test;
-        */2 * * * * %SUT_NAME=Dev
+H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
+H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-css
+H(00-15) 1-23/3 * * *%SUT_NAME=na44test1;CREDENTIALS_ID=env-omni
+H(00-15) 1-23/3 * * *%SUT_NAME=na45test1;CREDENTIALS_ID=env-css
+H(00-15) 1-23/3 * * *%SUT_NAME=ora3;CREDENTIALS_ID=env-omni
+H(20-45) 1-23/3 * * *%SUT_NAME=ora6;CREDENTIALS_ID=env-sanity
+H(20-45) 1-23/3 * * *%SUT_NAME=sdb3;CREDENTIALS_ID=env-stem
+H(20-45) 1-23/3 * * *%SUT_NAME=sdb6;CREDENTIALS_ID=env-omni
+H(20-45) 1-23/3 * * *%SUT_NAME=stg1;CREDENTIALS_ID=env-css
+H(20-45) 1-23/3 * * *%SUT_NAME=stg3;CREDENTIALS_ID=env-sanity
+H(20-45) 1-23/3 * * *%SUT_NAME=stg4;CREDENTIALS_ID=env-omni
+H(20-45) 1-23/3 * * *%SUT_NAME=stg5;CREDENTIALS_ID=env-css
     ''')
   ])
 ])
 
-        stage('Example') {
-            
+        stage('Executing test and printing the properties')      
                 echo "${env.emailTo}"
                 echo "${env.slackTo}"
-                script { currentBuild.description = "${params.SUT_NAME}" }
+                script { currentBuild.description = "${params.SUT_NAME} ${params.CREDENTIALS_ID}" }
             
         }
     
