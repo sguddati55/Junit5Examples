@@ -46,7 +46,7 @@ stage('print the retrieve properties') {
     }
     
     def getCronParams() {
-    def jobname= $JOB_NAME
+    def jobname= build.project.name
     if(jobname=="STEM_Scheduler_WithJenkinsFile") {
         return """H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
         H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"""
