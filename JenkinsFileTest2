@@ -8,32 +8,25 @@ node {
 
  
   pipelineTriggers([
-    if (env.JOBNAME) {
-    parameterizedCron('''
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-css
-H(00-15) 1-23/3 * * *%SUT_NAME=na44test1;CREDENTIALS_ID=env-omni
-H(00-15) 1-23/3 * * *%SUT_NAME=na45test1;CREDENTIALS_ID=env-css
-H(00-15) 1-23/3 * * *%SUT_NAME=ora3;CREDENTIALS_ID=env-omni
-H(20-45) 1-23/3 * * *%SUT_NAME=ora6;CREDENTIALS_ID=env-sanity
-H(20-45) 1-23/3 * * *%SUT_NAME=sdb3;CREDENTIALS_ID=env-stem
-H(20-45) 1-23/3 * * *%SUT_NAME=sdb6;CREDENTIALS_ID=env-omni
-H(20-45) 1-23/3 * * *%SUT_NAME=stg1;CREDENTIALS_ID=env-css
-H(20-45) 1-23/3 * * *%SUT_NAME=stg3;CREDENTIALS_ID=env-sanity
-H(20-45) 1-23/3 * * *%SUT_NAME=stg4;CREDENTIALS_ID=env-omni
-H(20-45) 1-23/3 * * *%SUT_NAME=stg5;CREDENTIALS_ID=env-css
-    ''')
-    }    
     
-    else{
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
-}
+    parameterizedCron(getCronParams())
   ])
 ])
 
+def getCronParams() {
+    if( env.JOBNAME ) {
+        return 'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
+H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-css'
+    }
+    else {
+        return 'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
+H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-css'
+    } 
+}
 
 
 stage('clone workspace') {
