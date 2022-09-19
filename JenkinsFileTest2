@@ -15,16 +15,10 @@ node {
 
 def getCronParams() {
     if( env.JOBNAME ) {
-        return "'parameterizedCron('''(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-css''')'"
+        return "'parameterizedCron('''(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity''')'"
     }
     else {
-        return "'parameterizedCron('''(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-css''')'"
+        return "'parameterizedCron('''(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity''')'"
     } 
 }
 
