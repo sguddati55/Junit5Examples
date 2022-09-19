@@ -5,9 +5,10 @@ node {
     string(name: 'CREDENTIALS_ID', defaultValue: 'env-sanity', description: 'Which credentials Id to be consumed ?'),
   ]),
   
-  if (env.JOBNAME) {
+
  
   pipelineTriggers([
+    if (env.JOBNAME) {
     parameterizedCron('''
 H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
 H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
@@ -24,14 +25,15 @@ H(20-45) 1-23/3 * * *%SUT_NAME=stg3;CREDENTIALS_ID=env-sanity
 H(20-45) 1-23/3 * * *%SUT_NAME=stg4;CREDENTIALS_ID=env-omni
 H(20-45) 1-23/3 * * *%SUT_NAME=stg5;CREDENTIALS_ID=env-css
     ''')
-  ])
-])
-}
-
-else{
+    }    
+    
+    else{
 H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
 H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem
 }
+  ])
+])
+
 
 
 stage('clone workspace') {
