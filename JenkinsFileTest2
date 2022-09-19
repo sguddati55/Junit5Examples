@@ -12,14 +12,10 @@ node {
 
 def getCronParams() {
     if( env.JOBNAME ) {
-        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity,
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem,
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni'"
+        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"
     }
     else {
-        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity,
-H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem,
-H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni'"
+        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"
     } 
 }
 
