@@ -4,21 +4,22 @@ node {
     string(name: 'SUT_NAME', defaultValue: 'na44stmfa', description: 'Which Environment you want to run the tests on?'),
     string(name: 'CREDENTIALS_ID', defaultValue: 'env-sanity', description: 'Which credentials Id to be consumed ?'),
   ]),
-  
-
- 
   pipelineTriggers([
-    
-    getCronParams()
- 
+    parameterizedCron(getCronParams())
+  ])
 ])
+
 
 def getCronParams() {
     if( env.JOBNAME ) {
-        return "'parameterizedCron('''(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity''')'"
+        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity,
+H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem,
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni'"
     }
     else {
-        return "'parameterizedCron('''(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity''')'"
+        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity,
+H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfb;CREDENTIALS_ID=env-stem,
+H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-omni'"
     } 
 }
 
