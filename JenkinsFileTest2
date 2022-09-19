@@ -46,13 +46,13 @@ stage('print the retrieve properties') {
     }
     
     def getCronParams() {
-    if( env.JOBNAME ) {
+    if($JOB_NAME=="STEM_Scheduler_WithJenkinsFile") {
         return """H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
         H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"""
     }
     else {
-        return """H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
-        H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"""
+        return """H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-sanity
+        H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-sanity"""
     } 
 }
     
