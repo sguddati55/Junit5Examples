@@ -10,14 +10,7 @@ node {
 ])
 
 
-def getCronParams() {
-    if( env.JOBNAME ) {
-        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"
-    }
-    else {
-        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"
-    } 
-}
+
 
 
 stage('clone workspace') {
@@ -51,4 +44,13 @@ stage('print the retrieve properties') {
                 script {currentBuild.description = "${params.SUT_NAME}  ${params.CREDENTIALS_ID}"}
     }
     }
+    
+    def getCronParams() {
+    if( env.JOBNAME ) {
+        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"
+    }
+    else {
+        return "'H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"
+    } 
+}
     
