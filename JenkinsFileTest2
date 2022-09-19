@@ -47,12 +47,12 @@ stage('print the retrieve properties') {
     
     def getCronParams() {
     if(env.JOB_NAME.equals("STEM_Scheduler_WithJenkinsFile")) {
-        return """H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
-        H(00-15) 1-23/3 * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity"""
+        return """*/2 * * * *%SUT_NAME=na44stmfa;CREDENTIALS_ID=env-sanity
+       */3 * * * *%SUT_NAME=na45stmfa;CREDENTIALS_ID=env-sanity"""
     }
     else {
-        return """H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-sanity
-        H(00-15) 1-23/3 * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-sanity"""
+        return """*/3 * * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-sanity
+       */3 * * * *%SUT_NAME=na45stmfb;CREDENTIALS_ID=env-sanity"""
     } 
 }
     
